@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="ASCII"?><project>
 	<version>1.0</version>
 	<configs>
-		<config default="true" name="Configuracion 1" category="opl">
+		<config default="false" name="config-modelA" category="opl">
 			<ref name="ModelA.mod" type="model">
 			</ref>
 			<ref name="projectAB.dat" type="data">
+			</ref>
+		</config>
+		<config default="false" name="config-modelB" category="opl">
+			<ref name="ModelB.mod" type="model">
+			</ref>
+			<ref name="projectAB.dat" type="data">
+			</ref>
+		</config>
+		<config default="true" name="configC" category="opl">
+			<ref name="ModelC.mod" type="model">
+			</ref>
+			<ref name="projectC.dat" type="data">
 			</ref>
 		</config>
 	</configs>
