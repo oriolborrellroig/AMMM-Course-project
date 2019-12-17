@@ -59,7 +59,7 @@
     //C
 	forall(o in O)
 	  forall(p in 1..(nPositions - k[o] + 1))
-             zopt[p][o] == sum(i in p..p+k[o]-1) (po[i][o]) <= m[o];
+             zopt[p][o] == !(sum(i in p..p+k[o]-1) (po[i][o]) <= m[o]);
              
              
 //forall(o in O)
