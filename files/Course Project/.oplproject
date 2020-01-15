@@ -13,7 +13,7 @@
 			<ref name="projectAB.dat" type="data">
 			</ref>
 		</config>
-		<config default="true" name="configC" category="opl">
+		<config default="true" name="config-modelC" category="opl">
 			<ref name="ModelC.mod" type="model">
 			</ref>
 			<ref name="projectC.dat" type="data">

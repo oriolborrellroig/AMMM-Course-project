@@ -58,6 +58,17 @@
         sum(i in p..p+k[o]-1) po[i][o] <= m[o];
          
  }
+
+    //C
+	forall(o in O)
+	  forall(p in 1..(nPositions - k[o] + 1))
+             zopt[p][o] == !(sum(i in p..p+k[o]-1) (po[i][o]) <= m[o]);
+             
+             
+//forall(o in O)
+//         zOpt[o] >= sum(p in 1..(nPositions - k[o] + 1)) !(sum(i in p..p+k[o]-1) (po[i][o]) <= m[o]);
+}
+
  
  execute {
   	var solution = new Array(1+nPositions);
