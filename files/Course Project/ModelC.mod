@@ -30,14 +30,10 @@
  
  dvar boolean pc[p in P][c in C];
  dvar boolean po[p in P][o in O];
- dvar boolean zopt[p in P][o in O];
- dvar int+ z;
  
- minimize sum(p in P, o in O) zopt[p][o];
+ 
+ minimize 1;
   
- //dvar int+ zOpt[o in O];
- //minimize sum(i in O) (zOpt[i]);
- 
  //sum (o in 1..(nOptions-2), c in C : classOption[c][o] == 1) (pc[p][c] + po[p][o]) <= 50; 
  
  subject to {
@@ -56,15 +52,12 @@
            forall(o in O)
              (pc[p][c] == 1) => po[p][o] == classOption[c][o];
              
-    //C
-	forall(o in O)
-	  forall(p in 1..(nPositions - k[o] + 1))
-             zopt[p][o] == sum(i in p..p+k[o]-1) (po[i][o]) <= m[o];
-             
-             
-//forall(o in O)
-//         zOpt[o] >= sum(p in 1..(nPositions - k[o] + 1)) !(sum(i in p..p+k[o]-1) (po[i][o]) <= m[o]);
-}
+    //A
+    forall(o in 1..nOptions)
+      forall(p in 1..(nPositions - k[o] + 1))
+        sum(i in p..p+k[o]-1) po[i][o] <= m[o];
+         
+ }
  
  execute {
   	var solution = new Array(1+nPositions);
@@ -78,9 +71,8 @@
  		else {solution[p] = cl; write(cl + " ");} 		 
  	}
  	writeln();writeln();
- 	
- 	var violationsTotal = 0;
  	for (var o = 1; o <= nOptions; ++o) {
+ 	 	
  		var violations = 0;
  	 	var solOpt = new Array(1+nPositions);
  		write("OPTION " + o + ":            ");
@@ -97,14 +89,11 @@
  			if (placed > m[o]) { 			 			
  				if (violations == 0) write("\tViolations in windows: ");
  				++violations;
- 				++violationsTotal;
  				write("[" + p  + "..." + (p + k[o] - 1) + "] ");
    			} 				 			 		 		
  		}
  		
  		writeln();
  	} 		 		 	
- 	write("violations: " + violationsTotal)
+ 	
  }  
- 
- 

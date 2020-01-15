@@ -1,0 +1,25 @@
+S <- conjunt buit
+po <- Matrix(p,o)
+C 
+O
+carsOfClass
+p = 0
+k
+m
+
+---Funcions R i Q
+
+
+getFeasibleClass(p):
+	feasibleClass <- conjunt buit
+	foreach c in C:
+		|{o in O | r(p, o)>m(o)}| = 0
+	return feasibleClass
+
+
+while |S| < nPositions:
+	feasibleClass = getFeasibleClass()
+	S <- S U argmin{q(p,c) | c in feasibleClass && carsOfClass(c) != 0}
+	carsOfClass(c) <- carsOfClass(c) - 1
+	p <- p + 1
+return S
