@@ -30,13 +30,12 @@
  
  dvar boolean pc[p in P][c in C];
  dvar boolean po[p in P][o in O];
- dvar boolean zopt[p in P][o in O];
- dvar int+ z;
  
- minimize sum(p in P, o in O) zopt[p][o];
+ //dvar boolean zopt[p in P][o in O]; 
+ //minimize sum(p in P, o in O) zopt[p][o];
   
- //dvar int+ zOpt[o in O];
- //minimize sum(i in O) (zOpt[i]);
+ dvar int+ zOpt[o in O];
+ minimize sum(i in O) (zOpt[i]);
  
  //sum (o in 1..(nOptions-2), c in C : classOption[c][o] == 1) (pc[p][c] + po[p][o]) <= 50; 
  
@@ -57,15 +56,15 @@
              (pc[p][c] == 1) => po[p][o] == classOption[c][o];
              
     //C
-	forall(o in O)
-	  forall(p in 1..(nPositions - k[o] + 1))
-             zopt[p][o] == !(sum(i in p..p+k[o]-1) (po[i][o]) <= m[o]);
+//	forall(o in O)
+//	  forall(p in 1..(nPositions - k[o] + 1))
+//             zopt[p][o] == (sum(i in p..p+k[o]-1) (po[i][o]) >= m[o]+1);
              
-             
-//forall(o in O)
-//         zOpt[o] >= sum(p in 1..(nPositions - k[o] + 1)) !(sum(i in p..p+k[o]-1) (po[i][o]) <= m[o]);
+forall(o in O)
+         zOpt[o] >= sum(p in 1..(nPositions - k[o] + 1)) !(sum(i in p..p+k[o]-1) (po[i][o]) <= m[o]);
 }
- 
+// sum(j in 1..n) (pos[j] == i) = 1 per tot i entre 1..n <-- crea vector de posicions [1 3 2]
+//
  execute {
   	var solution = new Array(1+nPositions);
  	write("SEQUENCE OF CLASSES: ");
