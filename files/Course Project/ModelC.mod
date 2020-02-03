@@ -31,14 +31,11 @@
  dvar boolean pc[p in P][c in C];
  dvar boolean po[p in P][o in O];
  
-<<<<<<< HEAD
  //dvar boolean zopt[p in P][o in O]; 
  //minimize sum(p in P, o in O) zopt[p][o];
   
  dvar int+ zOpt[o in O];
  minimize sum(i in O) (zOpt[i]);
-=======
->>>>>>> dc5d4e94043b9f4118e45659aadc23855137a0ee
  
  minimize 1;
   
@@ -75,13 +72,8 @@
 forall(o in O)
          zOpt[o] >= sum(p in 1..(nPositions - k[o] + 1)) !(sum(i in p..p+k[o]-1) (po[i][o]) <= m[o]);
 }
-<<<<<<< HEAD
 // sum(j in 1..n) (pos[j] == i) = 1 per tot i entre 1..n <-- crea vector de posicions [1 3 2]
 //
-=======
-
- 
->>>>>>> dc5d4e94043b9f4118e45659aadc23855137a0ee
  execute {
   	var solution = new Array(1+nPositions);
  	write("SEQUENCE OF CLASSES: ");
